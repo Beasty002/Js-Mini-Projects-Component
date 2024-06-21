@@ -1,7 +1,6 @@
 # JavaScript Mini Projects
 
-This repository contains a collection of small, reusable components and mini projects built with JavaScript, HTML, and CSS. Each project focuses on a specific feature commonly used in web development. Feel free to explore, learn, and use these components in your own projects.
-
+This repository contains a collection of small, reusable components and mini projects built with JavaScript, HTML, and CSS. Each project focuses on a specific feature commonly used in web development.
 ## Projects
 
 1. **Image Carousel/Slideshow**
