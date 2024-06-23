@@ -24,7 +24,7 @@
             min-height: 100vh;
         }
 
-        .slides-container {
+        .slide-container {
             position: relative;
             width: 800px;
             height: 400px;
@@ -137,7 +137,7 @@
 </head>
 
 <body>
-    <div class="slides-container">
+    <div class="slide-container">
         <section class="slides">
             <img src="./images/img1.jpg" alt="" class="active">
             <img src="./images/img2.jpg" alt="">
@@ -148,9 +148,9 @@
             <span class="prev">&#10094</span>
         </div>
         <div class="dotsContainer">
-            <div class="dot active" attr="0"></div>
-            <div class="dot" attr="1"></div>
-            <div class="dot" attr="2"></div>
+            <div class="dot active" attr="0" onclick="switchImage(this)"></div>
+            <div class="dot" attr="1" onclick="switchImage(this)"></div>
+            <div class="dot" attr="2" onclick="switchImage(this)"></div>
         </div>
     </div>
     <script>
@@ -169,6 +169,7 @@
                 counter++;
             }
             slideImages[counter].style.animation = "next2 0.5s ease-in forwards"
+            indicators()
         }
         prev.addEventListener('click', slidePrev);
         function slidePrev() {
@@ -180,6 +181,46 @@
                 counter--;
             }
             slideImages[counter].style.animation = "prev2 0.5s ease-in forwards"
+            indicators()
+        }
+        function auto() {
+            deleteInterval = setInterval(timer, 2000);
+            function timer() {
+                slideNext();
+                indicators()
+            }
+        }
+        auto();
+        const container = document.querySelector('.slide-container')
+        container.addEventListener('mouseover', function () {
+            clearInterval(deleteInterval);
+        })
+        container.addEventListener('mouseout', auto);
+        function indicators() {
+
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(' active', '')
+            }
+            dots[counter].className += ' active'
+        }
+        function switchImage(img) {
+            img.classList.add('active');
+            var imgId = img.getAttribute('attr');
+            if (imgId > counter) {
+                slideImages[counter].style.animation = "next1 0.5s ease-in forwards"
+                counter = imgId;
+                slideImages[counter].style.animation = "next2 0.5s ease-in forwards"
+            }
+            else if (imgId == counter) {
+                return;
+            }
+            else {
+                slideImages[counter].style.animation = "prev1 0.5s ease-in forwards"
+                counter = imgId;
+                slideImages[counter].style.animation = "prev2 0.5s ease-in forwards"
+            }
+
+            indicators()
         }
 
 
