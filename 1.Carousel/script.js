@@ -74,13 +74,15 @@ function switchImage(img) {
 
 imgHolder.forEach((element, index) => {
     element.addEventListener('click', (e) => {
+        e.preventDefault();
         if (!e.target.classList.contains('clear-btn')) {
             inputFile[index].click();
         }
     })
 });
 inputFile.forEach((el, index) => {
-    el.addEventListener('change', function () {
+    el.addEventListener('change', function (e) {
+        e.preventDefault();
         const image = this.files[0];
         console.log(image);
         const imgUrl = `./images/${image.name}`
@@ -102,7 +104,8 @@ imgBtn.forEach((el, idx) => {
     })
 })
 imgClear.forEach((el, idx) => {
-    el.addEventListener('click', () => {
+    el.addEventListener('click', (e) => {
+        e.preventDefault();
         el.style.display = "none";
         imgHolder[idx].querySelector('img').remove();
     })
