@@ -346,8 +346,10 @@
         }
 
         imgHolder.forEach((element, index) => {
-            element.addEventListener('click', () => {
-                inputFile[index].click();
+            element.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('clear-btn')) {
+                    inputFile[index].click();
+                }
             })
         });
         inputFile.forEach((el, index) => {
@@ -377,6 +379,18 @@
                 imgHolder[idx].querySelector('img').remove();
             })
         })
+
+        function showOnLoad() {
+            imgHolder.forEach((el, index) => {
+                const img = document.createElement("img");
+                img.src = slideImages[index].src
+                img.classList.add("uploaded-image");
+                imgHolder[index].appendChild(img);
+                imgClear[index].style.display = "block";
+            })
+
+        }
+        window.onload = showOnLoad;
 
 
 
