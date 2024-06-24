@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Tabs Component</title>
+    <style>
+        ul li {
+            list-style: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(220, 220, 220);
+        }
+
+        .wrapper {
+            width: 500px;
+            margin-top: 200px;
+            padding: 30px 40px;
+            background-color: #fff;
+            border-radius: 15px;
+        }
+
+        .tab-contents {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid rgb(195, 195, 195);
+            padding: 0px 10px;
+            padding-bottom: 5px;
+        }
+
+        .tab-btn button {
+            background-color: #fff;
+            border: none;
+            font-weight: 500;
+            font-size: large;
+            color: rgb(162, 162, 162);
+            cursor: pointer;
+        }
+
+        .active.tab-btn button {
+            color: Blue;
+        }
+
+        .line {
+            position: absolute;
+            width: 62px;
+            height: 4px;
+            background-color: blue;
+            left: 6px;
+            bottom: -3px;
+            border-radius: 3px;
+            transition: all 0.53s ease;
+        }
+
+        .container {
+            margin-top: 20px;
+            display: none;
+
+        }
+
+        .active.container {
+            display: block;
+            animation: anim1 .5s ease;
+        }
+
+        @keyframes anim1 {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <ul class="tab-contents">
+            <li class="tab-btn active"><Button>Home</Button></li>
+            <li class="tab-btn"><Button>About</Button></li>
+            <li class="tab-btn"><Button>Blogs</Button></li>
+            <li class="tab-btn"><Button>Services</Button></li>
+            <div class="line"></div>
+        </ul>
+
+        <section class="content-container">
+            <div class="container active">
+                <h2>Home</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ratione veritatis non, pariatur
+                    ducimus assumenda labore dolor minima voluptate dolore obcaecati omnis veniam expedita sed impedit
+                    exercitationem, consectetur aperiam quibusdam?</p>
+            </div>
+            <div class="container">
+                <h2>About</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ratione veritatis non, pariatur
+                    ducimus assumenda labore dolor minima voluptate dolore obcaecati omnis veniam expedita sed impedit
+                    exercitationem, consectetur aperiam quibusdam?</p>
+            </div>
+            <div class="container">
+                <h2>Blogs</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ratione veritatis non, pariatur
+                    ducimus assumenda labore dolor minima voluptate dolore obcaecati omnis veniam expedita sed impedit
+                    exercitationem, consectetur aperiam quibusdam?</p>
+            </div>
+            <div class="container">
+                <h2>Services</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ratione veritatis non, pariatur
+                    ducimus assumenda labore dolor minima voluptate dolore obcaecati omnis veniam expedita sed impedit
+                    exercitationem, consectetur aperiam quibusdam?</p>
+            </div>
+        </section>
+    </div>
+
+
+    </section>
+
+
+
+
+
+    <script>
+        const tabBtn = document.querySelectorAll(".tab-btn");
+        const container = document.querySelectorAll(".container");
+        tabBtn.forEach((el, idx) => {
+            el.addEventListener('click', () => {
+                tabBtn.forEach(el => el.classList.remove('active'));
+                el.classList.add('active');
+                var line = document.querySelector(".line");
+                line.style.width = (el.offsetWidth + 8) + "px";
+                line.style.left = (el.offsetLeft - 4) + "px";
+
+
+                container.forEach(cont => cont.classList.remove('active'));
+                container[idx].classList.add('active')
+
+
+            })
+        })
+
+
+    </script>
+</body>
+
+</html>

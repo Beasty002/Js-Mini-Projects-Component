@@ -47,24 +47,7 @@
     </section>
 
     <script>
-        const container = document.querySelectorAll(".container");
-        // container.forEach(el => {
-        //     el.addEventListener('click', () => {
 
-        //         el.classList.toggle('active')
-        //     })
-        // })
-        container.forEach(el => {
-            el.addEventListener('click', () => {
-                if (el.classList.contains('active')) {
-                    el.classList.remove('active');
-                }
-                else {
-                    container.forEach(el => el.classList.remove('active'));
-                    el.classList.add('active')
-                }
-            })
-        })
 
 
     </script>
