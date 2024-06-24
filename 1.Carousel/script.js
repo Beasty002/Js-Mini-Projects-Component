@@ -119,6 +119,6 @@ function showOnLoad() {
         imgHolder[index].appendChild(img);
         imgClear[index].style.display = "block";
     })
-
 }
+
 window.onload = showOnLoad;
