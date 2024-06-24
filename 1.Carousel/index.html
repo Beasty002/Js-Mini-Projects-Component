@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
     <script src="script.js" defer></script>
     <title>Carousel</title>
     <style>
@@ -12,16 +19,19 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'poppins';
         }
 
 
 
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100%;
             min-height: 100vh;
+            background-color: rgb(231, 231, 231);
         }
 
         .slide-container {
@@ -133,15 +143,89 @@
                 left: 0%;
             }
         }
+
+        .img-wrapper {
+            margin-top: 40px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .image-container {
+            height: 180px;
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            justify-content: space-between;
+            gap: 5px;
+        }
+
+        .img-holder {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .img-btn {
+            cursor: pointer;
+            background-color: blue;
+            color: white;
+            padding: 0.3em 0.8em;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .bxs-cloud-upload {
+            font-size: 3rem;
+            color: gray;
+        }
+
+        .img-msg {
+            font-size: 1rem;
+            font-weight: 500;
+            color: gray;
+        }
+
+        .uploaded-image {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            object-fit: fill;
+            z-index: 2;
+        }
+
+        .img-clear {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.4rem;
+            color: red;
+            z-index: 4;
+            display: none;
+            backdrop-filter: blur(5%);
+            border-radius: 50%;
+            padding: 0;
+        }
     </style>
 </head>
 
 <body>
     <div class="slide-container">
         <section class="slides">
-            <img src="./images/img1.jpg" alt="" class="active">
-            <img src="./images/img2.jpg" alt="">
-            <img src="./images/img3.jpg" alt="">
+            <img src="./images/img1.jpg" alt="" class="slide-image active">
+            <img src="./images/img2.jpg" alt="" class="slide-image">
+            <img src="./images/img3.jpg" alt="" class="slide-image">
         </section>
         <div class="buttons">
             <span class="next">&#10095</span>
@@ -153,11 +237,49 @@
             <div class="dot" attr="2" onclick="switchImage(this)"></div>
         </div>
     </div>
+    <div class="img-wrapper">
+        <figure class="image-container">
+            <input type="file" class="file" hidden>
+            <div class="img-holder">
+                <i class='bx bx-x-circle img-clear'></i>
+
+                <i class='bx bxs-cloud-upload'></i>
+                <h2 class="img-msg">Click to upload image</h2>
+
+            </div>
+            <button class="img-btn">Select Image</button>
+        </figure>
+        <figure class="image-container">
+            <input type="file" class="file" hidden>
+            <div class="img-holder">
+                <i class='bx bx-x-circle img-clear'></i>
+                <i class='bx bxs-cloud-upload'></i>
+                <h2 class="img-msg">Click to upload image</h2>
+
+            </div>
+            <button class="img-btn">Select Image</button>
+        </figure>
+        <figure class="image-container">
+            <input type="file" class="file" hidden>
+            <div class="img-holder">
+                <i class='bx bx-x-circle img-clear'></i>
+                <i class='bx bxs-cloud-upload'></i>
+                <h2 class="img-msg">Click to upload image</h2>
+
+            </div>
+            <button class="img-btn">Select Image</button>
+        </figure>
+    </div>
     <script>
-        let slideImages = document.querySelectorAll('img');
+        let slideImages = document.querySelectorAll('.slide-image');
         let prev = document.querySelector(".prev");
         let next = document.querySelector(".next");
         let dots = document.querySelectorAll(".dot");
+        let imgBtn = document.querySelectorAll(".img-btn");
+        let inputFile = document.querySelectorAll(".file");
+        let imgHolder = document.querySelectorAll(".img-holder");
+        let imgClear = document.querySelectorAll(".img-clear");
+
         var counter = 0;
         next.addEventListener('click', slideNext);
         function slideNext() {
@@ -222,6 +344,41 @@
 
             indicators()
         }
+
+        imgHolder.forEach((element, index) => {
+            element.addEventListener('click', () => {
+                inputFile[index].click();
+            })
+        });
+        inputFile.forEach((el, index) => {
+            el.addEventListener('change', function () {
+                const image = this.files[0];
+                const imgUrl = `./images/${image.name}`
+                const img = document.createElement("img");
+                if (imgHolder[index].querySelector("img")) {
+                    imgHolder[index].querySelector("img").remove();
+                }
+                img.src = imgUrl;
+                img.classList.add("uploaded-image");
+                imgHolder[index].appendChild(img);
+                imgClear[index].style.display = "block";
+            })
+        })
+        imgBtn.forEach((el, idx) => {
+            el.addEventListener('click', () => {
+                if (imgHolder[idx].querySelector('img')) {
+                    slideImages[idx].src = imgHolder[idx].querySelector('img').src;
+                }
+            })
+        })
+        imgClear.forEach((el, idx) => {
+            el.addEventListener('click', () => {
+                el.style.display = "none";
+                imgHolder[idx].querySelector('img').remove();
+            })
+        })
+
+
 
 
     </script>
