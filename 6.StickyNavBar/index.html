@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+    <style>
+        section {
+            height: 200dvh;
+            background-color: hotpink;
+            background: url("https://unblast.com/wp-content/uploads/2021/01/Space-Background-Images-1536x1024.jpg") no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" alt="" id="logo">
+        <i class='bx bx-menu burger-menu'></i>
+        <nav>
+            <ul class="nav-items-list">
+                <li class="nav-items"><a href="">Home</a></li>
+                <li class="nav-items"><a href="">About</a></li>
+                <li class="nav-items"><a href="">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="sec1">
+        dfdfd
+    </section>
+    <script>
+        // window.addEventListener("scroll", () => {
+        //     var header = document.querySelector("header");
+        //     if (window.scrollY > 0) {
+        //         header.classList.add("sticky");
+        //     } else {
+        //         header.classList.remove("sticky");
+        //     }
+        // });
+
+
+        var lastScrollTop = 0;
+        nav = document.querySelector("header");
+        window.addEventListener("scroll", () => {
+            console.clear();
+            var scrollTop = window.pageYOffset; //
+            if (scrollTop > lastScrollTop) {
+                nav.style.top = "-90px"
+            }
+            else {
+                nav.style.top = "0px"
+            }
+            console.log(`Current is : ${lastScrollTop}        &     scroll Top is ${scrollTop}`)
+            lastScrollTop = scrollTop;
+        })
+
+    </script>
+
+
+</body>
+
+</html>
