@@ -75,7 +75,7 @@ function switchImage(img) {
 imgHolder.forEach((element, index) => {
     element.addEventListener('click', (e) => {
         e.preventDefault();
-        if (!e.target.classList.contains('clear-btn')) {
+        if (!e.target.classList.contains('img-clear')) {
             inputFile[index].click();
         }
     })
