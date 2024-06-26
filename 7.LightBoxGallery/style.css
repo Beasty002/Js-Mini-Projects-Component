@@ -55,3 +55,27 @@ body {
     max-height: 80%;
     object-fit: contain;
 }
+
+.btn {
+    background-color: transparent;
+    font-size: 4rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    width: fit-content;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+#prev {
+    left: 40px;
+}
+
+#next {
+    right: 40px;
+}
