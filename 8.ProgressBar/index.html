@@ -14,54 +14,219 @@
     <script src="script.js" defer></script>
     <title>Light box</title>
     <style>
+        .container {
+            width: 400px;
+            height: 40px;
+            border-radius: 54px;
+            background: linear-gradient(145deg, #cacaca, #f0f0f0);
+            box-shadow: 27px 27px 40px #959595b1,
+                -27px -27px 40px #ffffff;
+        }
 
+        .box {
+            width: 0%;
+            border-radius: inherit;
+            height: 100%;
+            background-color: blue;
+            border-radius: 54px;
+            background: linear-gradient(145deg, #6453e6, #7762ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: width 0.8s ease;
+            /* animation: anim .8s linear; */
+        }
+
+        /* 
+        @keyframes anim {
+            0% {
+                width: 0%;
+                color: #cacaca00;
+            }
+
+            50% {
+                color: #cacaca00;
+
+            }
+
+            100% {
+                width: 50%;
+                color: #fff;
+            }
+        } */
+
+        span {
+            margin-right: 30px;
+            font-weight: 500;
+            font-size: 1.3rem;
+            width: 30px;
+            display: inline-block;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .input-value {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            gap: 80px;
+            margin-top: 40px;
+
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-group label {
+            font-size: 1.3rem;
+        }
+
+        .form-group input {
+            font-size: 1.1rem;
+            border-radius: 15px;
+            outline: none;
+            border: 2px solid gray;
+            text-align: center;
+            width: 100px;
+            margin-top: 10px;
+        }
+
+        .err {
+            font-size: 1.2rem;
+            position: absolute;
+            color: red;
+            font-weight: 500;
+            margin-top: 40px;
+            bottom: -40px;
+            width: 400px;
+            display: none;
+            text-align: center;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     </style>
 </head>
 
 <body>
-    <div id="lightBox">
-        <button id="prev" class="btn">&#10094</button>
-        <img src="https://a.storyblok.com/f/178900/750x422/c5663bac5d/lv2_pv1.jpg/m/filters:quality(95)format(webp)"
-            alt="">
-        <button id="next" class="btn">&#10095</button>
+    <section>
+        <span id="counter">50%</span>
+        <div class="container">
+            <div class="box" id="box">50%</div>
+        </div>
+    </section>
+
+    <div class="input-value">
+        <div class="form-group">
+            <label for="">Value</label>
+            <input type="number" name="" id="value">
+        </div>
+        <div class="form-group">
+            <label for="">Max value</label>
+            <input type="number" name="" id="maxVal">
+
+        </div>
+        <p class="err">Max value should be more than the value</p>
     </div>
-    <main class="img-wrapper">
-        <figure class="img-container">
-            <img src="https://a.storyblok.com/f/178900/750x422/c5663bac5d/lv2_pv1.jpg/m/filters:quality(95)format(webp)"
-                tabindex="0" alt="">
-        </figure>
-        <figure class="img-container">
-            <img src="https://img.freepik.com/free-photo/mythical-dragon-beast-anime-style_23-2151112842.jpg?t=st=1719332037~exp=1719335637~hmac=3c5119e245d0a50abe4a1f6962262cf612c3fb5f1107639b0b9b53564d39c63e&w=900"
-                tabindex="0" alt="">
-        </figure>
-        <figure class="img-container">
-            <img src="https://img.freepik.com/free-photo/anime-style-mythical-dragon-creature_23-2151112752.jpg?t=st=1719332059~exp=1719335659~hmac=d8f3907437d6a7b7534212caa1954c001baca1b0e7a30b42e8bbeaaa64ad3ba1&w=900"
-                tabindex="0" alt="">
-        </figure>
-        <figure class="img-container">
-            <img src="https://as2.ftcdn.net/v2/jpg/05/52/54/11/1000_F_552541156_EcDyiYahT67pv77Acqi9o0gyy6j3yWIe.jpg"
-                tabindex="0" alt="">
-        </figure>
-        <figure class="img-container">
-            <img src="https://as2.ftcdn.net/v2/jpg/06/18/34/53/1000_F_618345302_TxB1eL1Ur17TkQadCivMrteFqgzus9H7.jpg"
-                tabindex="0" alt="">
-        </figure>
-        <figure class="img-container">
-            <img src="https://img.freepik.com/free-photo/black-white-illustration-man-with-short-hair-black-white-face_188544-12868.jpg?w=900&t=st=1719332146~exp=1719332746~hmac=60afdd736e02eb90db436de45c582d762b9be64600fb1e88fa2c318a0ac03246"
-                tabindex="0" alt="">
-        </figure>
-        <figure class="img-container">
-            <img src="https://img.freepik.com/free-photo/anime-style-character-meditating-contemplating-mindfulness_23-2151476648.jpg?t=st=1719332161~exp=1719335761~hmac=76dd911d257b86087f5c84bc126d6165fc0e9e3f5210c4326b9d2a4dd9409b9c&w=740"
-                tabindex="0" alt="">
-        </figure>
-        <figure class="img-container">
-            <img src="https://img.freepik.com/free-photo/anime-character-using-virtual-reality-glasses-metaverse_23-2151568869.jpg?t=st=1719332193~exp=1719335793~hmac=c3d2a04145bbb8e12fc7593fc81a704f527fcedc6b78b8ecef4dbe2e8ee6f042&w=740"
-                tabindex="0" alt="">
-        </figure>
-    </main>
+
+
+
 
 
     <script>
+        const box = document.querySelector('#box');
+        const val = document.getElementById("counter");
+        const value = document.getElementById("value");
+        const maxVal = document.getElementById("maxVal");
+        let counter = 0;
+        let finalValue = 0;
+        let max = 0;
+        function updateCounter() {
+            if (counter < 50) {
+                counter++;
+                val.innerHTML = counter + "%";
+                setTimeout(updateCounter, 10);
+            }
+        }
+
+        updateCounter();
+        setTimeout(() => {
+            const element = document.getElementById("box");
+            const computedStyle = window.getComputedStyle(element);
+            const width = computedStyle.width;
+            console.log("CSS Width:", width);
+        }, 1000);
+
+        function changeWidth() {
+            max = parseInt(maxVal.value, 10);
+            finalValue = parseInt(value.value, 10);
+
+            const error = document.querySelector(".err")
+            if (max < finalValue) {
+                error.style.display = "block";
+                // alert("Max value cant be less than the value");
+                return;
+            }
+
+            error.style.display = "none";
+            box.style.width = (finalValue / max) * 100 + "%";
+            box.innerText = `${Math.floor((finalValue / max) * 100)}%`
+        }
+
+
+        function valueUpdate() {
+            if (value.value.trim() === "") {
+                return;
+            }
+            if (value.value < 0) {
+                value.value = 0;
+            }
+            changeWidth();
+        }
+
+        function maxValueUpdate() {
+            if (maxVal.value.trim() === "") { return; }
+            if (maxVal < 0) {
+                maxVal.value = 0;
+            }
+            changeWidth();
+        }
+        // value.addEventListener("focusout", valueUpdate);
+        // maxVal.addEventListener("focusout", maxValueUpdate);
+        value.addEventListener("input", valueUpdate);
+        maxVal.addEventListener("input", maxValueUpdate);
+        value.addEventListener("keydown", valueUpdate);
+        maxVal.addEventListener("keydown", maxValueUpdate);
+        // value.addEventListener("change", valueUpdate);
+        // maxVal.addEventListener("change", maxValueUpdate);
+        value.addEventListener("keyup", (e) => {
+            if (e.key === "Enter") {
+                valueUpdate();
+            }
+
+        })
+        maxVal.addEventListener("keyup", (e) => {
+            if (e.key === "Enter") {
+                maxValueUpdate();
+            }
+
+        })
+
+
+
+
+
+
 
 
     </script>
