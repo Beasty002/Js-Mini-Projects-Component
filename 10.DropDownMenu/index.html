@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Dropdown</title>
+    <style>
+        .pfp-img {
+            width: 50px;
+            height: 50px;
+            display: block;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .dropmenu-wrapper {
+            position: absolute;
+            background-color: black;
+            top: 148%;
+            border-radius: 10px;
+            right: 0;
+            width: 300px;
+            max-height: 0;
+            transition: max-height 0.4s ease;
+            overflow: hidden;
+        }
+
+        .dropmenu-wrapper.active {
+            display: block;
+            max-height: 400px;
+        }
+
+
+        .dropmenu-wrapper ul {
+            display: flex;
+            padding: 0.6em 0.9em;
+            flex-direction: column;
+            font-size: 1.2rem;
+        }
+
+        .dropmenu-wrapper ul li {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            color: rgb(216, 216, 216);
+
+
+            .cont {
+                .span {
+                    width: fit-content;
+                    text-wrap: nowrap;
+                }
+            }
+        }
+
+        .icon {
+            transition: all 0.3s ease;
+        }
+
+        .menu-list li:hover .icon {
+            transform: translateX(10px);
+        }
+
+        .cont {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" alt="" id="logo">
+        <i class='bx bx-menu burger-menu'></i>
+        <nav>
+            <ul class="nav-items-list">
+                <li class="nav-items"><a href="">Home</a></li>
+                <li class="nav-items"><a href="">About</a></li>
+                <li class="nav-items"><a href="">Services</a></li>
+                <li class="nav-items"><button><img
+                            src="https://online.hitpaw.com/images/topics/ai-related/luffy-heart-eyed-anime-pfp.jpg"
+                            alt="" class="pfp-img"></button></li>
+                <div class="dropmenu-wrapper">
+                    <ul class="menu-list">
+                        <li>
+                            <div class="cont"><i class='bx bxs-user'></i> <span>User Profile</span></div>
+                            <i class='bx bx-chevron-right icon'></i>
+                        </li>
+                        <li>
+                            <div class="cont">
+                                <i class='bx bx-question-mark'></i> <span>Help and suppost</span>
+                            </div>
+                            <i class='bx bx-chevron-right icon'></i>
+                        </li>
+                        <li>
+                            <div class="cont">
+                                <i class='bx bxs-cog'></i> <span>Setting and Privacy</span>
+                            </div>
+                            <i class='bx bx-chevron-right icon'></i>
+                        </li>
+                        <li>
+                            <div class="cont">
+                                <i class='bx bxs-door-open'></i> <span>Logout</span>
+                            </div>
+                            <i class='bx bx-chevron-right icon'></i>
+                        </li>
+                    </ul>
+
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        const dropMenu = document.querySelector('.dropmenu-wrapper');
+        const pimg = document.querySelector(".pfp-img")
+        pimg.addEventListener("click", () => {
+            dropMenu.classList.toggle('active');
+        })
+    </script>
+
+</body>
+
+</html>
