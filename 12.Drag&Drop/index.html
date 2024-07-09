@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1e1e1e;
+            gap: 40px;
+        }
+
+        .container {
+            min-height: 300px;
+            width: 200px;
+            padding: 30px;
+            border: 4px dashed rgb(255, 60, 60);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .child {
+                background-color: hotpink;
+                height: 40px;
+                border-radius: 10px;
+            }
+        }
+
+        .container.left {
+            .child {
+                background-color: aqua;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container left">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+    <div class="container right">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+    <script>
+        const container = document.querySelectorAll('.container');
+        const child = document.querySelectorAll('.child');
+        child.forEach(children => {
+            children.setAttribute('draggable', true); //this allows us to set the element to be draggable
+            children.addEventListener("dragstart", e => {
+                let selected = e.target;
+                console.log("children: ", children)
+                console.log("selected: ", selected)
+                container.forEach(cont => {
+                    cont.addEventListener("dragover", e => {
+                        e.preventDefault();
+                    })
+                    cont.addEventListener("drop", e => {
+                        cont.appendChild(selected);
+                        selected = null;
+                    })
+                })
+
+            })
+        })
+
+    </script>
+</body>
+
+
+</html>
